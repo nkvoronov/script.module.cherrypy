@@ -46,20 +46,15 @@ True
 
 """
 
-import os
+import os, sys
 import io
 import re
 import email.utils
 import socket
-import sys
 import time
 import traceback as traceback_
 import logging
-
-try:
-    from urllib.parse import unquote_to_bytes
-except ImportError:
-    from urllib import unquote as unquote_to_bytes
+from urllib.parse import unquote as unquote_to_bytes
 
 import six
 from six.moves import queue
@@ -69,7 +64,7 @@ from . import errors, __version__
 from ._compat import ntob
 from .workers import threadpool
 from .makefile import MakeFile
-from urllib import quote
+from urllib.parse import quote_plus
 
 __all__ = ('HTTPRequest', 'HTTPConnection', 'HTTPServer',
            'SizeCheckWrapper', 'KnownLengthRFile', 'ChunkedRFile',
